@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EUR/USD Календарь</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#38bdf8">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>📅 EUR/USD Календарь</h1>
+      <p class="subtitle">Важные новости и сценарии движения цены</p>
+    </header>
+
+    <section class="add-form">
+      <h2>➕ Добавить новость</h2>
+      <div class="form-grid">
+        <input id="date" type="date" required>
+        <input id="time" type="time" required>
+        <input id="name" type="text" placeholder="Название" required>
+        <input id="forecast" type="text" placeholder="Прогноз" required>
+        <input id="previous" type="text" placeholder="Предыдущее" required>
+        <select id="importance">
+          <option value="high">🔴 Высокая</option>
+          <option value="medium">🟡 Средняя</option>
+          <option value="low">🟢 Низкая</option>
+        </select>
+        <select id="direction">
+          <option value="inverse">Выше прогноза = SELL</option>
+          <option value="direct">Выше прогноза = BUY</option>
+        </select>
+        <button id="addBtn">Добавить</button>
+      </div>
+    </section>
+
+    <section class="filters">
+      <button class="filter active" data-filter="all">Все</button>
+      <button class="filter" data-filter="high">🔴 Высокая</button>
+      <button class="filter" data-filter="medium">🟡 Средняя</button>
+      <button class="filter" data-filter="low">🟢 Низкая</button>
+    </section>
+
+    <section id="newsList" class="news-list"></section>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js');
+    }
+  </script>
+</body>
+</html>
